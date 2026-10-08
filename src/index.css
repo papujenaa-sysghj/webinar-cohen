@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #060f22;
+  --color-navy-900: #0b1f3f;
+  --color-navy-850: #0e294f;
+  --color-navy-800: #102a54;
+  --color-navy-700: #163a6e;
+  --color-navy-600: #1d4d8f;
+  --color-navy-500: #2563ab;
+  --color-gold-600: #b3862f;
+  --color-gold-500: #c89b3c;
+  --color-gold-400: #d9b35f;
+  --color-gold-300: #e8cd8f;
+  --color-gold-200: #f3e3bd;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", "Inter", Georgia, serif;
+
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scale-in: scale-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.8s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-navy-900 antialiased;
+    overflow-x: hidden;
+    font-feature-settings: "ss01" 1, "cv01" 1;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-300);
+    color: var(--color-navy-950);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .card-surface {
+    @apply rounded-2xl border border-navy-900/[0.06] bg-white;
+    box-shadow:
+      0 1px 2px rgba(11, 31, 63, 0.04),
+      0 8px 24px -8px rgba(11, 31, 63, 0.1);
+  }
+  .card-elevated {
+    @apply rounded-3xl border border-navy-900/[0.06] bg-white;
+    box-shadow:
+      0 1px 2px rgba(11, 31, 63, 0.05),
+      0 24px 48px -16px rgba(11, 31, 63, 0.18);
+  }
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--color-gold-300), var(--color-gold-500) 55%, var(--color-gold-400));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-dot-pattern {
+    background-image: radial-gradient(rgba(11, 31, 63, 0.09) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .ring-gold {
+    box-shadow: 0 0 0 1px rgba(200, 155, 60, 0.35), 0 0 0 5px rgba(200, 155, 60, 0.08);
+  }
+  .shimmer-gold {
+    background: linear-gradient(
+      100deg,
+      var(--color-gold-500) 30%,
+      var(--color-gold-200) 45%,
+      var(--color-gold-500) 60%
+    );
+    background-size: 220% 100%;
+  }
+}
