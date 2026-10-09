@@ -43,8 +43,8 @@ export const validateRegistrationForm = (values) => {
     errors.currentClass = "Please select the current class.";
   }
 
-  if (!isRequired(values.interestedGrade)) {
-    errors.interestedGrade = "Please select the interested grade.";
+  if (!isRequired(values.currentSchool)) {
+    errors.currentSchool = "Current school name is required.";
   }
 
   if (!isRequired(values.district)) {

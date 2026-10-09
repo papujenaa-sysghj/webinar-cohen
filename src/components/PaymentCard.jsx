@@ -33,7 +33,9 @@ export default function PaymentCard() {
             {details?.studentName || "Student"}
           </p>
           {details?.currentClass && (
-            <p className="text-xs sm:text-sm text-navy-900/55">{details.currentClass}</p>
+            <p className="text-xs sm:text-sm text-navy-900/55 truncate">
+              {details.currentClass}{details?.currentSchool ? ` · ${details.currentSchool}` : ""}
+            </p>
           )}
         </div>
         <div className="flex shrink-0 items-center gap-3">

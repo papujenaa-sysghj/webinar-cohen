@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import ChairmanSection from "../components/ChairmanSection";
-import WebinarHighlights from "../components/WebinarHighlights";
 import Button from "../components/ui/Button";
 import { webinarConfig } from "../config/webinarConfig";
 
@@ -15,7 +14,6 @@ export default function LandingPage() {
       <main className="flex-1 pb-20 sm:pb-0">
         <HeroSection />
         <ChairmanSection />
-        <WebinarHighlights />
       </main>
 
       <Footer />

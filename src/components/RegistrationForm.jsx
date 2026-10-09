@@ -7,15 +7,11 @@ import Select from "./ui/Select";
 import Button from "./ui/Button";
 import { useRegistration } from "../context/RegistrationContext";
 import { validateRegistrationForm, hasErrors } from "../utils/validation";
+import { webinarConfig } from "../config/webinarConfig";
 
-const CLASS_OPTIONS = [
-  "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 11", "Class 12",
-];
+const CLASS_OPTIONS = ["Class 10"];
 
-const DISTRICT_OPTIONS = [
-  "Khordha", "Cuttack", "Puri", "Ganjam", "Sambalpur", "Balasore",
-  "Mayurbhanj", "Jajpur", "Angul", "Other",
-];
+const DISTRICT_OPTIONS = webinarConfig.odishaDistricts;
 
 const emptyForm = {
   studentName: "",
@@ -23,8 +19,8 @@ const emptyForm = {
   parentWhatsapp: "",
   studentMobile: "",
   email: "",
-  currentClass: "",
-  interestedGrade: "",
+  currentClass: "Class 10",
+  currentSchool: "",
   district: "",
   city: "",
   pinCode: "",
@@ -162,27 +158,22 @@ export default function RegistrationForm() {
             onBlur={handleBlur("currentClass")}
             error={errors.currentClass}
           >
-            <option value="">Select class</option>
             {CLASS_OPTIONS.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
           </Select>
         </FormField>
 
-        <FormField label="Interested Grade" required htmlFor="interestedGrade" error={errors.interestedGrade}>
-          <Select
-            id="interestedGrade"
-            name="interestedGrade"
-            value={form.interestedGrade}
-            onChange={handleChange("interestedGrade")}
-            onBlur={handleBlur("interestedGrade")}
-            error={errors.interestedGrade}
-          >
-            <option value="">Select grade</option>
-            {CLASS_OPTIONS.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </Select>
+        <FormField label="Current School" required htmlFor="currentSchool" error={errors.currentSchool}>
+          <Input
+            id="currentSchool"
+            name="currentSchool"
+            placeholder="e.g. DAV Public School"
+            value={form.currentSchool}
+            onChange={handleChange("currentSchool")}
+            onBlur={handleBlur("currentSchool")}
+            error={errors.currentSchool}
+          />
         </FormField>
       </div>
 

@@ -1,10 +1,46 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { CalendarDays, Clock, GraduationCap, Sparkles, UsersRound, Wifi } from "lucide-react";
+import { CalendarDays, Clock, Play, Sparkles, UsersRound, Volume2, VolumeX, Wifi } from "lucide-react";
 import { webinarConfig } from "../config/webinarConfig";
 import Button from "./ui/Button";
 
 export default function HeroSection() {
   const { chairman, webinar, fee, currencySymbol } = webinarConfig;
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false);
+  const [hasStartedWithAudio, setHasStartedWithAudio] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Start playback muted initially to comply with browser autoplay
+    video.muted = true;
+    video.play().catch(() => {});
+  }, []);
+
+  const startPlayingWithAudio = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.muted = false;
+    video.volume = 1;
+    setIsMuted(false);
+    setHasStartedWithAudio(true);
+    video.play().catch(() => {});
+  };
+
+  const toggleMute = (e) => {
+    e?.stopPropagation?.();
+    const video = videoRef.current;
+    if (!video) return;
+    const nextState = !video.muted;
+    video.muted = nextState;
+    if (!nextState) {
+      video.volume = 1;
+    }
+    setIsMuted(nextState);
+  };
 
   return (
     <section className="relative overflow-hidden bg-navy-950">
@@ -22,15 +58,25 @@ export default function HeroSection() {
           <div className="order-2 lg:order-1 text-center lg:text-left animate-fade-up">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-400/30 bg-gold-500/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-gold-300">
               <Sparkles className="h-3.5 w-3.5" />
-              Exclusive Chairman's Webinar
+              A Webinar That Can Change Your Life
             </span>
 
-            <h1 className="font-display mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold leading-[1.12] text-white tracking-tight">
-              An Exclusive Webinar with the Chairman of{" "}
-              <span className="text-gradient-gold">Cohen International School</span>
+            <h1 className="font-display mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold leading-[1.14] text-white tracking-tight">
+              A Mentor Who Has Produced More Than{" "}
+              <span className="text-gradient-gold">2,500+ IITians</span> from Odisha
             </h1>
 
-            <div className="mt-6 flex flex-col items-center lg:items-start gap-1">
+            {/* 10th Board Special Focus Banner */}
+            <div className="mt-4 inline-flex items-center gap-2.5 rounded-xl border border-gold-400/35 bg-gradient-to-r from-gold-500/15 via-gold-500/5 to-transparent px-4 py-2.5 text-xs sm:text-sm font-semibold text-gold-200 backdrop-blur-sm">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-gold-500 text-navy-950 font-black text-[10px]">
+                95%
+              </span>
+              <span>
+                Chairman's Focus: <strong className="text-white font-bold">How to Solve Case-Based Questions & Secure 95%+ in 10th Boards</strong>
+              </span>
+            </div>
+
+            <div className="mt-5 flex flex-col items-center lg:items-start gap-1">
               <p className="text-lg sm:text-xl font-semibold text-white">{chairman.name}</p>
               <p className="text-sm sm:text-base text-white/65">{chairman.designation}</p>
               <p className="text-sm sm:text-base font-medium text-gold-300">{chairman.education}</p>
@@ -63,36 +109,66 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Chairman photo card */}
+          {/* Hero Video Section */}
           <div className="order-1 lg:order-2 flex justify-center animate-scale-in">
-            <div className="relative w-full max-w-[19rem] sm:max-w-sm animate-float">
-              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-gold-500/25 via-gold-400/10 to-transparent blur-xl" />
-              <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[1.75rem] border border-gold-400/30" />
+            <div className="relative w-full max-w-[270px] sm:max-w-[310px] md:max-w-[330px]">
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-gold-500/25 via-gold-400/10 to-transparent blur-xl pointer-events-none" />
+              <div className="absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-[1.75rem] border border-gold-400/30 pointer-events-none" />
 
-              <div className="relative rounded-[1.75rem] bg-gradient-to-b from-white/[0.08] to-white/0 p-2 ring-1 ring-white/10">
-                <div className="aspect-[4/5] w-full overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-navy-800 to-navy-900 flex items-center justify-center">
-                  {chairman.photo ? (
-                    <img
-                      src={chairman.photo}
-                      alt={chairman.name}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex flex-col items-center gap-2.5 text-white/35">
-                      <GraduationCap className="h-16 w-16" strokeWidth={1.25} />
-                      <span className="text-xs tracking-wide">Chairman Photo</span>
-                    </div>
+              <div className="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-b from-white/[0.08] to-white/0 p-2 sm:p-2.5 ring-1 ring-white/15 shadow-2xl backdrop-blur-sm">
+                <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[1.4rem] bg-black shadow-inner flex items-center justify-center group">
+                  <video
+                    ref={videoRef}
+                    src={webinar.video || "/hero-video.mp4"}
+                    autoPlay
+                    muted
+                    loop
+                    controls
+                    playsInline
+                    preload="auto"
+                    onVolumeChange={(e) => setIsMuted(e.target.muted)}
+                    className="h-full w-full object-contain"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+
+                  {isMuted && (
+                    <button
+                      type="button"
+                      onClick={toggleMute}
+                      className="absolute top-3 right-3 z-20 flex items-center gap-1.5 rounded-full bg-navy-950/85 px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md border border-gold-400/50 hover:bg-gold-500 hover:text-navy-950 transition-all cursor-pointer animate-pulse-soft"
+                    >
+                      <VolumeX className="h-3.5 w-3.5 text-gold-400" />
+                      <span>Unmute</span>
+                    </button>
                   )}
                 </div>
-              </div>
 
-              {/* Floating credential badge — kept within the wrapper's own box so it
-                  can't overlap the stacked content below on narrow screens */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[88%] rounded-xl border border-navy-900/5 bg-white px-4 py-3 text-center shadow-[0_16px_40px_-12px_rgba(11,31,63,0.35)]">
-                <p className="text-xs font-bold text-navy-950 truncate">{chairman.name}</p>
-                <p className="mt-0.5 text-[11px] font-medium text-gold-600">
-                  Founder & Chairman
-                </p>
+                <div className="mt-2.5 px-3 py-2 flex items-start justify-between gap-3 text-xs border-t border-white/10 pt-2.5">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-bold text-white text-[13px] leading-tight">
+                      Mr. Jyoti Ranjan Tripathy <span className="text-gold-400 font-semibold text-[11px]">(IIT KGP)</span>
+                    </p>
+                    <p className="text-[11px] text-white/75 mt-0.5 leading-tight">
+                      Founder & Chairman, Cohen International School
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={toggleMute}
+                    className="text-[11px] font-semibold text-gold-300 hover:text-gold-200 transition-colors flex items-center gap-1 shrink-0 bg-white/5 px-2.5 py-1 rounded-full border border-white/10 hover:border-gold-400/40 cursor-pointer mt-0.5"
+                  >
+                    {isMuted ? (
+                      <>
+                        <VolumeX className="h-3 w-3" /> Unmute
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="h-3 w-3" /> Mute
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
