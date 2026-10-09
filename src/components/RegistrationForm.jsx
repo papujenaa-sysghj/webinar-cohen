@@ -8,6 +8,7 @@ import Button from "./ui/Button";
 import { useRegistration } from "../context/RegistrationContext";
 import { validateRegistrationForm, hasErrors } from "../utils/validation";
 import { webinarConfig } from "../config/webinarConfig";
+import { sendToGoogleSheet } from "../services/googleSheetService";
 
 const CLASS_OPTIONS = ["Class 10"];
 

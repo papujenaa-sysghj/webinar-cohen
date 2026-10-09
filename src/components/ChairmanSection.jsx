@@ -43,21 +43,25 @@ export default function ChairmanSection() {
                     />
                   )}
                 </div>
-                <p className="mt-3 text-xs font-bold tracking-wide text-gold-300 uppercase">
+                <p className="mt-3.5 text-sm sm:text-base font-extrabold tracking-wider text-gold-400 uppercase drop-shadow-sm">
                   {chairman.name}
                 </p>
-                <p className="text-[11px] text-white/60">Founder & Chairman</p>
+                <p className="text-xs text-white/70 font-medium mt-0.5">Founder & Chairman</p>
               </div>
 
               {/* Stat Highlights */}
-              <div className="relative z-10 mt-6 w-full space-y-2.5">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-2.5">
-                  <p className="font-display text-lg font-bold text-gradient-gold">2,500+</p>
-                  <p className="text-[11px] text-white/70 font-medium">IITians Mentored</p>
+              <div className="relative z-10 mt-6 w-full space-y-3">
+                <div className="rounded-xl border border-gold-500/30 bg-gradient-to-r from-gold-500/15 via-white/5 to-gold-500/15 p-3 shadow-lg">
+                  <p className="font-display text-2xl sm:text-3xl font-black text-gradient-gold inline-block animate-pulse-glow">
+                    2,500+
+                  </p>
+                  <p className="text-xs text-white/85 font-semibold tracking-wide mt-0.5">IITians Mentored</p>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 p-2.5">
-                  <p className="font-display text-lg font-bold text-gradient-gold">IIT Kharagpur</p>
-                  <p className="text-[11px] text-white/70 font-medium">Mechanical Engineer</p>
+                <div className="rounded-xl border border-gold-500/30 bg-gradient-to-r from-gold-500/15 via-white/5 to-gold-500/15 p-3 shadow-lg">
+                  <p className="font-display text-xl sm:text-2xl font-black text-gradient-gold inline-block animate-pulse-glow [animation-delay:1.25s]">
+                    IIT Kharagpur
+                  </p>
+                  <p className="text-xs text-white/85 font-semibold tracking-wide mt-0.5">Mechanical Engineer</p>
                 </div>
               </div>
             </div>
@@ -69,7 +73,7 @@ export default function ChairmanSection() {
                   Founder & Chairman
                 </span>
                 <span className="rounded-md bg-navy-900/5 px-2.5 py-0.5 text-xs font-medium text-navy-800">
-                  Vidwan Classes & Cohen International
+                  Vidwan Classes & Cohen International School
                 </span>
               </div>
 
@@ -77,8 +81,8 @@ export default function ChairmanSection() {
                 {chairman.name}
               </h3>
 
-              <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-navy-700/80">
-                <Landmark className="h-4 w-4 text-gold-600" /> {chairman.education}
+              <p className="mt-1.5 inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-navy-800">
+                <Landmark className="h-4.5 w-4.5 text-gold-600 shrink-0" /> {chairman.education}
               </p>
 
               <div className="relative mt-5 pl-5 border-l-2 border-gold-400/50">

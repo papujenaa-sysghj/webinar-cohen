@@ -27,6 +27,10 @@ export const webinarConfig = {
 
   fee: 49,
   currencySymbol: "₹",
+  registrationIdPrefix: "CIS-WEB",
+
+  // Google Apps Script Web App URL
+  googleSheetScriptUrl: "https://script.google.com/macros/s/AKfycbxa6koR6h7aAjU6o8DvFrnzHlvw_b-RAhRHO58s9T-mb8Pr5BjbjMkAAPK1Ln0Y4qg5eg/exec",
 
   payment: {
     upiId: "coheninternationalschoo@iob",

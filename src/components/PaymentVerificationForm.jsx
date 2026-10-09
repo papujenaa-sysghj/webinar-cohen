@@ -7,16 +7,18 @@ import Button from "./ui/Button";
 import FileUpload from "./FileUpload";
 import { useRegistration } from "../context/RegistrationContext";
 import { validatePaymentVerification, hasErrors } from "../utils/validation";
+import { sendToGoogleSheet } from "../services/googleSheetService";
+import { webinarConfig } from "../config/webinarConfig";
 
 export default function PaymentVerificationForm() {
   const navigate = useNavigate();
-  const { submitRegistration } = useRegistration();
+  const { details, submitRegistration } = useRegistration();
   const [utr, setUtr] = useState("");
   const [screenshot, setScreenshot] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const values = { utr, screenshot };
     const fieldErrors = validatePaymentVerification(values);
@@ -26,16 +28,24 @@ export default function PaymentVerificationForm() {
 
     setSubmitting(true);
 
-    // Mock submission — no backend. Simulate brief processing delay.
-    setTimeout(() => {
-      submitRegistration({
-        utr: utr.trim(),
-        screenshotName: screenshot?.name ?? null,
-        screenshotDataUrl: screenshot?.dataUrl ?? null,
-      });
-      setSubmitting(false);
-      navigate("/success");
-    }, 1600);
+    const registrationId = submitRegistration({
+      utr: utr.trim(),
+      screenshotName: screenshot?.name ?? null,
+      screenshotDataUrl: screenshot?.dataUrl ?? null,
+    });
+
+    // Send full registration data + payment screenshot to Google Sheets
+    await sendToGoogleSheet({
+      registrationId,
+      ...details,
+      utr: utr.trim(),
+      screenshotName: screenshot?.name || "screenshot.png",
+      screenshotDataUrl: screenshot?.dataUrl || "",
+      fee: webinarConfig.fee,
+    });
+
+    setSubmitting(false);
+    navigate("/success");
   };
 
   return (

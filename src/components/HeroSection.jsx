@@ -16,7 +16,7 @@ export default function HeroSection() {
 
     // Start playback muted initially to comply with browser autoplay
     video.muted = true;
-    video.play().catch(() => {});
+    video.play().catch(() => { });
   }, []);
 
   const startPlayingWithAudio = () => {
@@ -27,7 +27,7 @@ export default function HeroSection() {
     video.volume = 1;
     setIsMuted(false);
     setHasStartedWithAudio(true);
-    video.play().catch(() => {});
+    video.play().catch(() => { });
   };
 
   const toggleMute = (e) => {
@@ -56,33 +56,27 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           {/* Copy */}
           <div className="order-2 lg:order-1 text-center lg:text-left animate-fade-up">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-400/30 bg-gold-500/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-gold-300">
-              <Sparkles className="h-3.5 w-3.5" />
-              A Webinar That Can Change Your Life
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-500/10 px-4 sm:px-5 py-2 text-sm sm:text-base font-bold tracking-wide text-gold-300 shadow-sm">
+              <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-gold-400" />
+              Webinar That Can Change Your Life
             </span>
 
             <h1 className="font-display mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold leading-[1.14] text-white tracking-tight">
-              A Mentor Who Has Produced More Than{" "}
+              Webinar by a Mentor Who Has Produced{" "}
               <span className="text-gradient-gold">2,500+ IITians</span> from Odisha
             </h1>
 
-            {/* 10th Board Special Focus Banner */}
-            <div className="mt-4 inline-flex items-center gap-2.5 rounded-xl border border-gold-400/35 bg-gradient-to-r from-gold-500/15 via-gold-500/5 to-transparent px-4 py-2.5 text-xs sm:text-sm font-semibold text-gold-200 backdrop-blur-sm">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-gold-500 text-navy-950 font-black text-[10px]">
-                95%
-              </span>
-              <span>
-                Chairman's Focus: <strong className="text-white font-bold">How to Solve Case-Based Questions & Secure 95%+ in 10th Boards</strong>
-              </span>
+            <p className="mt-3 text-sm sm:text-base text-white/75 max-w-xl">
+              How to Secure <span className="text-gold-300 font-semibold">95%+ in 10th Board Exams</span>
+            </p>
+
+            <div className="mt-6 flex flex-col items-center lg:items-start gap-1">
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">{chairman.name}</p>
+              <p className="text-sm sm:text-base text-white/80">{chairman.designation}</p>
+              <p className="text-base sm:text-lg lg:text-xl font-bold text-gold-300 mt-0.5">{chairman.education}</p>
             </div>
 
-            <div className="mt-5 flex flex-col items-center lg:items-start gap-1">
-              <p className="text-lg sm:text-xl font-semibold text-white">{chairman.name}</p>
-              <p className="text-sm sm:text-base text-white/65">{chairman.designation}</p>
-              <p className="text-sm sm:text-base font-medium text-gold-300">{chairman.education}</p>
-            </div>
-
-            <div className="mt-7 inline-flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm text-white/75">
+            <div className="mt-7 inline-flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-bold text-white">
               <span className="inline-flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-gold-400" /> {webinar.date}
               </span>
@@ -144,12 +138,15 @@ export default function HeroSection() {
                   )}
                 </div>
 
-                <div className="mt-2.5 px-3 py-2 flex items-start justify-between gap-3 text-xs border-t border-white/10 pt-2.5">
+                <div className="mt-2.5 px-3 py-2 flex items-start justify-between gap-3 text-xs border-t border-gold-400/20 pt-2.5">
                   <div className="min-w-0 flex-1">
-                    <p className="font-bold text-white text-[13px] leading-tight">
-                      Mr. Jyoti Ranjan Tripathy <span className="text-gold-400 font-semibold text-[11px]">(IIT KGP)</span>
+                    <p className="font-extrabold text-gold-400 text-base sm:text-lg leading-tight">
+                      Mr. Jyoti Ranjan Tripathy
                     </p>
-                    <p className="text-[11px] text-white/75 mt-0.5 leading-tight">
+                    <p className="text-xs sm:text-sm font-bold text-gold-300 mt-0.5 leading-tight">
+                      (IIT KGP)
+                    </p>
+                    <p className="text-xs text-white/75 mt-1 leading-tight">
                       Founder & Chairman, Cohen International School
                     </p>
                   </div>
