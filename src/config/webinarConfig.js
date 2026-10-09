@@ -22,7 +22,7 @@ export const webinarConfig = {
     time: "6:00 PM – 7:30 PM IST",
     mode: "Online Webinar",
     note: "Limited Registrations · Parent & Student Orientation",
-    video: "/hero-video.mp4",
+    video: "/cohen-school-compressed.mp4",
   },
 
   fee: 49,
@@ -37,7 +37,7 @@ export const webinarConfig = {
     payeeName: "Cohen International School",
   },
 
-  whatsappCommunityUrl: "https://chat.whatsapp.com/REPLACE_WITH_REAL_LINK",
+  whatsappCommunityUrl: "https://chat.whatsapp.com/FLm4xUYG8FVIWcAu0rrmlv",
 
   highlights: [
     {

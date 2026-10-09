@@ -169,7 +169,7 @@ export default function RegistrationForm() {
           <Input
             id="currentSchool"
             name="currentSchool"
-            placeholder="e.g. DAV Public School"
+            placeholder="e.g. Cohen International School"
             value={form.currentSchool}
             onChange={handleChange("currentSchool")}
             onBlur={handleBlur("currentSchool")}

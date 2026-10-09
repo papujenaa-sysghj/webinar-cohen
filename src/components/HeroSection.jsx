@@ -7,8 +7,7 @@ import Button from "./ui/Button";
 export default function HeroSection() {
   const { chairman, webinar, fee, currencySymbol } = webinarConfig;
   const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false);
-  const [hasStartedWithAudio, setHasStartedWithAudio] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -16,6 +15,7 @@ export default function HeroSection() {
 
     // Start playback muted initially to comply with browser autoplay
     video.muted = true;
+    setIsMuted(true);
     video.play().catch(() => { });
   }, []);
 
@@ -113,7 +113,7 @@ export default function HeroSection() {
                 <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[1.4rem] bg-black shadow-inner flex items-center justify-center group">
                   <video
                     ref={videoRef}
-                    src={webinar.video || "/hero-video.mp4"}
+                    src={webinar.video || "/cohen-school-compressed.mp4"}
                     autoPlay
                     muted
                     loop

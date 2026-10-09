@@ -35,7 +35,7 @@ export default function ChairmanSection() {
                     />
                   ) : (
                     <video
-                      src="/hero-video.mp4#t=1.5"
+                      src="/cohen-school-compressed.mp4#t=1.5"
                       className="h-full w-full object-cover pointer-events-none"
                       playsInline
                       preload="auto"
